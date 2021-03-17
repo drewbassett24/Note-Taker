@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 8080;
 
 // use the express module
 const app = express();
-// 
 
 //Use json to transfer between front and back ends 
 app.use(express.json());
@@ -17,12 +16,12 @@ app.use(express.urlencoded({extended: true}));
 
 
 // Gets request and directs user to homepage
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 // Directs user to 'notes' page
-app.get('/notes', function(req, res) {
+app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
@@ -45,7 +44,7 @@ noteAdded = (notes) => {
 
 
 // Create api routes here
-app.get('/api/notes', function(req, res) {
+app.get('/api/notes', (req, res) => {
     res.json(noteData);
 });
 
@@ -56,6 +55,7 @@ app.post("/api/notes", (req, res) => {
     var postNotes = req.body;
     postNotes.id = uniqid();
     console.log("req.body.id: " + postNotes);
+    // Push note data to the page
     noteData.push(postNotes);
     noteAdded(noteData);
     res.json(noteData);
