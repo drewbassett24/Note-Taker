@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const noteData = require('/db/db.json');
 const uniqid = require ('uniqid');
 
 const PORT = process.env.PORT || 8080;
@@ -42,12 +43,18 @@ app.post("/api/notes", (req, res) => {
     // Give each note a unique id
     var postNotes = req.body;
     postNotes.id = uniqid();
-    console.log(req.body.id: " + postNotes);
+    console.log("req.body.id: " + postNotes);
     noteData.push(postNotes);
     noteAdded(noteData);
     res.json(noteData);
 
 });
+
+noteAdded(noteData);
+
+res.json(noteData);
+
+
 
 module.exports = function (app) {
 
