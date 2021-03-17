@@ -4,19 +4,17 @@ const path = require('path');
 const noteData = require('/db/db.json');
 const uniqid = require ('uniqid');
 
+// Choose a port for the app to use
 const PORT = process.env.PORT || 8080;
-const app = express();
-app.use(express.static('public'));
 
-// Use Get * here.
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-    
-});
+// use the express module
+const app = express();
+// 
 
 //Use json to transfer between front and back ends 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
 
 // Gets request and directs user to homepage
 app.get('/', function(req, res) {
@@ -28,9 +26,23 @@ app.get('/notes', function(req, res) {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server listening on: http//localhost ${PORT}`);
-});
+// Add the note to the database (make it a string)
+noteAdded = (notes) => {
+    notes = JSON.stringify(notes);
+
+    console.log(notes);
+
+    fs.writeFile("./db/db.json", notes, (err) => {
+        if (err) {
+            return console.log(err);
+        }
+        else {
+            console.log("Your note has been saved!")
+        }
+    });
+}
+
+
 
 // Create api routes here
 app.get('/api/notes', function(req, res) {
@@ -59,3 +71,7 @@ res.json(noteData);
 module.exports = function (app) {
 
 }
+
+app.listen(PORT, () => {
+    console.log(`Server listening on: http//localhost ${PORT}`);
+});
