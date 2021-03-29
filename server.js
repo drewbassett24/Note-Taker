@@ -90,35 +90,6 @@ function generateNotes(notes) {
 
 
 
-// Create api routes here
-app.get('/api/notes', (req, res) => {
-    res.json(noteData);
-});
-
-// Push the note to the page
-app.post("/api/notes", (req, res) => {
-
-    // Give each note a unique id
-    var postNotes = req.body;
-    postNotes.id = uniqid();
-    console.log("req.body.id: " + postNotes);
-    
-    // Push note data to the page
-    noteData.push(postNotes);
-    noteAdded(noteData);
-    res.json(noteData);
-
-});
-
-noteAdded(noteData);
-
-res.json(noteData);
-
-
-
-// module.exports = function (app) {
-
-// }
 
 app.listen(PORT, () => {
     console.log(`Server listening on: http//localhost ${PORT}`);
