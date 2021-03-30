@@ -18,14 +18,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 // Gets request and directs user to homepage
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/index.html"));
-});
 
 // All the routes
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, "./public/notes.html"));
-});
+
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(___dirname, './db/db.json'))
 });
@@ -87,7 +82,12 @@ function generateNotes(notes) {
     err ? console.error(err) : console.log('Your note has been deleted.'));
 }
 
-
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, "./public/notes.html"));
+});
 
 
 
