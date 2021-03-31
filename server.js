@@ -31,13 +31,12 @@ app.get('/assets/css/styles.css', (req, res) => {
     res.sendFile(path.join(___dirname, './public/assets/css/styles.css'))
 });
 
-// a
 
 // add the note and recreate the notes file
 function generateNotes(notes) {
     fs.writeFile("./db/db.json", notes, (err) =>
     err ? console.error(err) : console.log('Your note has been deleted.'));
-}
+};
 
 
 
