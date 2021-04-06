@@ -51,3 +51,5 @@ router.delete('/api/notes/:id', (req, res) => {
     deletedNotes(writeFile);
     return res.json(db);
 });
+
+modules.export = router
