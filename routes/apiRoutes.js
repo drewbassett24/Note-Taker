@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express();
+const router = require('express').Router();
 const uniqid = require ('uniqid');
 
-router.post('/api/notes', (req, res) => {
+
+router.post('/notes', (req, res) => {
     // adds new note to the request body
     const newNote = req.body;
     newNote.id = uniqid();
@@ -33,7 +33,7 @@ router.delete('/api/notes/:id', (req, res) => {
     // logs newest input
     console.log(selectedNote);
 
-    // gets old inputs
+    
     var db = require("./db/db.json");
     for (let i = 0; i < db.length; i++) {
         if (selectedNote == db[i].id) {
@@ -52,4 +52,4 @@ router.delete('/api/notes/:id', (req, res) => {
     return res.json(db);
 });
 
-modules.export = router
+module.exports = router;

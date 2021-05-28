@@ -1,12 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
-// const noteData = require('./db/db.json');
-const uniqid = require ('uniqid');
-const { json } = require("express");
-const { stringify } = require("querystring");
-const { start } = require('repl');
-const router = require(router);
+const noteData = require('./db/db.json');
+const apiRoutes = require('./routes/apiRoutes')
+const htmlRoutes = require('./routes/htmlRoutes')
+
 
 // Choose a port for the app to use
 const PORT = process.env.PORT || 8080;
@@ -14,14 +12,16 @@ const PORT = process.env.PORT || 8080;
 // use the express module
 const app = express();
 
+
 //Use json to transfer between front and back ends 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // Gets request and directs user to homepage
 
-// All the routes
 
 app.get('/api/notes', (req, res) => {
     res.sendFile(path.join(___dirname, './db/db.json'))
