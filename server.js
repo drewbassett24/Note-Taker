@@ -24,13 +24,13 @@ app.use('/', htmlRoutes);
 
 
 app.get('/api/notes', (req, res) => {
-    res.sendFile(path.join(___dirname, './db/db.json'))
+    res.sendFile(path.join(__dirname, './db/db.json'))
 });
 app.get('/assets/js/index.js', (req, res) => {
-    res.sendFile(path.join(___dirname, './public/assets/js/index.js'))
+    res.sendFile(path.join(__dirname, './public/assets/js/index.js'))
 });
 app.get('/assets/css/styles.css', (req, res) => {
-    res.sendFile(path.join(___dirname, './public/assets/css/styles.css'))
+    res.sendFile(path.join(__dirname, './public/assets/css/styles.css'))
 });
 
 
