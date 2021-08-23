@@ -1,17 +1,1 @@
-[
-  {
-    "title": "Note number 1",
-    "text": "This is a note.",
-    "id": ""
-  },
-  {
-    "title": "Note number 2",
-    "text": "This is another note.",
-    "id": ""
-  },
-  {
-    "title": "Note number 3",
-    "text": "This is yet another note.",
-    "id": ""
-  }
-]
+[{"title":"Note number 1","text":"This is a note.","id":""},{"title":"Note number 2","text":"This is another note.","id":""},{"title":"Note number 3","text":"This is yet another note.","id":""},{"title":"New Note 3","text":"This is 3rd note today\n","id":"azxw839kksoy9x10"},{"title":"Happy Days","text":"I have finally finished this assignment","id":"azxw839kksp0kdac"}]
