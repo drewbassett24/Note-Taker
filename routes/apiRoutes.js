@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const uniqid = require ('uniqid');
-
+const fs = require ('fs');
 
 router.post('/notes', (req, res) => {
     // adds new note to the request body
@@ -10,9 +10,16 @@ router.post('/notes', (req, res) => {
     console.log(newNote);
 
     // get old notes
-    var db = require("./db/db.json");
+    let db = require("../db/db.json");
+
     // add new note to the database (make it a string)
-    db.push(newNote);
+    
+    let readNotes = fs.readFileSync("../db/db.json", "utf8");
+    readNotes = JSON.parse(readNotes);
+    db.push(newNote); 
+    
+    fs.writeFileSync();
+   
     // show  current notes
     console.log(db);
 
