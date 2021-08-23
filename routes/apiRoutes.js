@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const uniqid = require ('uniqid');
+const path = require ('path')
 const fs = require ('fs');
 
 router.post('/notes', (req, res) => {
@@ -10,38 +11,34 @@ router.post('/notes', (req, res) => {
     console.log(newNote);
 
     // get old notes
-    let db = require("../db/db.json");
+    let db = require(path.join(__dirname,"../db/db.json"));
 
     // add new note to the database (make it a string)
     
-    let readNotes = fs.readFileSync("../db/db.json", "utf8");
+    let readNotes = fs.readFileSync( path.join(__dirname,"../db/db.json"), "utf8");
     readNotes = JSON.parse(readNotes);
-    db.push(newNote); 
+    readNotes.push(newNote); 
     
-    fs.writeFileSync();
+    fs.writeFileSync(path.join(__dirname,"../db/db.json"), JSON.stringify(readNotes));
    
-    // show  current notes
-    console.log(db);
 
-    const writeFile = JSON.stringify(db, null, 2);
-    generateNotes(writeFile);
 
-    return res.json(db);
+    return res.json(newNote);
 });
 
 function generateNotes(notes) {
-    fs.writeFile("./db/db.json", notes, (err) =>
-    err ? console.error(err) : console.log('Your note has been deleted.'));
+    fs.writeFile(path.join(__dirname,"../db/db.json"), notes, (err) => {
+     if (err) console.error(err);})
 };
 
-router.delete('/api/notes/:id', (req, res) => {
+router.delete('/notes/:id', (req, res) => {
     const selectedNote = req.params.id;
 
     // logs newest input
     console.log(selectedNote);
 
     
-    var db = require("./db/db.json");
+    var db = require(path.join(__dirname,"../db/db.json"));
     for (let i = 0; i < db.length; i++) {
         if (selectedNote == db[i].id) {
             console.log(db[i]);
